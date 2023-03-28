@@ -1,16 +1,23 @@
 import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 
+import CardIcon from "../../components/card-icon/card-icon.component";
+import CardDropdown from "../../components/card-deopdown/card-deopdown.component";
+
 import { ReactComponent as SakrLogo } from "../../assets/Sakr.svg";
 
 import { UserContext } from "../../contexts/user.context";
+
+import { DropdownContext } from "../../contexts/dropdown.context";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import "./navigation.styles.scss";
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
+
+  const { dropdownStatus } = useContext(DropdownContext);
 
   return (
     <Fragment>
@@ -33,7 +40,10 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CardIcon />
         </div>
+
+        {dropdownStatus && <CardDropdown />}
       </div>
       <Outlet />
     </Fragment>
