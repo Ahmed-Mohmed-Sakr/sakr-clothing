@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const addCardItem = (cardItems, productToAdd) => {
   // find if cardItems conain prodctsToADD
@@ -24,17 +24,33 @@ export const DropdownContext = createContext({
   setDropdownStatus: () => {},
   cardItems: [],
   addItemToCard: () => {},
+  cardCount: 0,
 });
 
 export const DropdownProvider = ({ children }) => {
   const [dropdownStatus, setDropdownStatus] = useState(false);
   const [cardItems, setCardItems] = useState([]);
+  const [cardCount, setCardCount] = useState(0);
+
+  useEffect(() => {
+    const newCardCount = cardItems.reduce(
+      (total, cardItem) => total + cardItem.quantity,
+      0
+    );
+    setCardCount(newCardCount);
+  }, [cardItems]);
 
   const addItemToCard = (productToAdd) => {
     setCardItems(addCardItem(cardItems, productToAdd));
   };
 
-  const value = { dropdownStatus, setDropdownStatus, addItemToCard, cardItems };
+  const value = {
+    dropdownStatus,
+    setDropdownStatus,
+    addItemToCard,
+    cardItems,
+    cardCount,
+  };
 
   return (
     <DropdownContext.Provider value={value}>

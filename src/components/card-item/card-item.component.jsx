@@ -1,12 +1,18 @@
 import "./card-item.styles.scss";
 
 const CardItem = ({ cardItem }) => {
-  const { name, quantity } = cardItem;
+  const { name, imageUrl, price, quantity } = cardItem;
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <span>{quantity}</span>
+    <div className="cart-item-container">
+      <img src={imageUrl} alt={`${name}`} />
+
+      <div className="item-details">
+        <span className="name">{name}</span>
+        <span className="price">
+          {quantity} X ${price}
+        </span>
+      </div>
     </div>
   );
 };
