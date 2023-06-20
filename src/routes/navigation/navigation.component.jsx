@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import CardIcon from "../../components/card-icon/card-icon.component";
-import CardDropdown from "../../components/card-deopdown/card-deopdown.component";
+import CardDropdown from "../../components/card-dropdown/card-dropdown.component";
 
 import { ReactComponent as SakrLogo } from "../../assets/Sakr.svg";
 

@@ -66,6 +66,9 @@ const SignUpForm = () => {
           type="text"
           required
           onChange={handleChange}
+          /**
+           * name="displayName" we give it same name as variable name to can edit it in formfield
+           */
           name="displayName"
           value={displayName}
         />
